@@ -11,6 +11,7 @@ repository = "https://github.com/Agilicus/web-site-load"
 python = "^3.8"
 locust = "^1.4.3"
 pyquery = "^1.4.3"
+gevent = "^21.1.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
@@ -21,3 +22,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 web-site-load  = 'web_site_load.main:main'
+web-site-run  = 'web_site_load.main:run'

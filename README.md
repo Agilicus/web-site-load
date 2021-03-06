@@ -15,8 +15,14 @@ export SITE=https://mysite.ca
 poetry install
 poetry run web-site-load
 ```
-
 Now open your browser to [http://localhost:8089/](http://localhost:8089/)
+
+You can also call
+
+```
+poetry run web-site-run
+```
+and it will start 20 users, 10/s, immediately with no web front end.
 
 
 ![](latency-screen.png)
