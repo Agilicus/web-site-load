@@ -9,17 +9,19 @@ class SitemapSwarmer(TaskSet):
         request = self.client.get(url)
         pq = PyQuery(request.content, parser='html')
         for loc in pq.find('loc'):
-            #/category-sitemap.xml
             link = PyQuery(loc).text()
             if os.path.splitext(link)[1] == ".xml":
-                links.extend(self.get_links(link))
+                if link != url:
+                    links.extend(self.get_links(link))
             else:
                 links.append(link)
         return links
 
     def on_start(self):
+        self.sitemap_links = []
+        self.sitemap_links.extend(self.get_links("/sitemap.xml"))
+        self.sitemap_links.extend(self.get_links("/sitemap_index.xml"))
         request = self.client.get("/robots.txt")
-        self.sitemap_links = self.get_links("/sitemap_index.xml")
         for line in request.content.decode('utf-8').split("\n"):
             fn = line.split()[:1]
             if len(fn) and fn[0] == "Sitemap:":
