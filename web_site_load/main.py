@@ -23,8 +23,8 @@ def main():
 
     if sys.argv[0] == "web-site-run":
         gevent.spawn(stats_printer(env.stats))
-        print("Starting 20 users, 10/s")
-        env.runner.start(20, spawn_rate=10)
+        print("Starting 30 users, 15/s")
+        env.runner.start(30, spawn_rate=15)
         print("Wait 1 minute and quit...")
         gevent.spawn_later(60, lambda: env.runner.quit())
         try:
