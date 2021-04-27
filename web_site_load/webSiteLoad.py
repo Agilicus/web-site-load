@@ -5,7 +5,7 @@ from .sitemapSwarmer import SitemapSwarmer
 
 class WebSiteLoad(HttpUser):
     tasks = {
-        SitemapSwarmer: 10,
+        SitemapSwarmer: 20,
     }
     host = getenv('SITE', 'https://www.example.com')
     min_wait = 5 * 1000
