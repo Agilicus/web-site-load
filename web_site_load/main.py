@@ -17,18 +17,18 @@ def main():
         print("Open your browser to http://localhost:8089/ to configure/run")
         try:
             env.web_ui.greenlet.join()
-        except KeyboardInterrupt:
+        except:
             env.web_ui.stop()
             print("Terminating")
 
     if sys.argv[0] == "web-site-run":
         gevent.spawn(stats_printer(env.stats))
-        print("Starting 30 users, 15/s")
-        env.runner.start(30, spawn_rate=15)
-        print("Wait 1 minute and quit...")
-        gevent.spawn_later(60, lambda: env.runner.quit())
+        print("Starting 50 users, 15/s")
+        env.runner.start(50, spawn_rate=10)
+        print("Wait 2 minute and quit...")
+        gevent.spawn_later(12000, lambda: env.runner.quit())
         try:
             env.runner.greenlet.join()
-        except KeyboardInterrupt:
+        except:
             print("Terminating")
 
